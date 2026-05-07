@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Sam Beer Shop — Birra, panini e gente vera. EUR sud Roma.</title>
+<meta name="description" content="Il pub di quartiere all'EUR. Birra artigianale, panini fatti come si deve, cocktail che reggono il banco. Viale dell'Aeronautica 51, Roma. Aperto fino all'1:00." />
+
+<!--
+===================================================================
+  SAM BEER SHOP - DEMO STAGE 1 (v3.0)
+===================================================================
+  TODO Stage 2:
+  [ASSETS] sostituire badge "DAL 20XX" con anno reale apertura.
+  [LINK]  cercare "TODO: sostituire link reale" -> dish.co, Maps,
+          tel:, Google Reviews, Instagram, TripAdvisor.
+  [INTEGRAZIONI] #map-placeholder -> Google Maps iframe;
+                 #instagram-placeholder -> feed reale @sambeershop.
+  [SEO] JSON-LD Restaurant, OG image, favicon, sitemap.
+===================================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bowlby+One&family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink:'#0A0A0A', coal:'#141414', char:'#1c1c1c', line:'#2a2a28',
+          bone:'#F5F1E8', mute:'#A39E92', dim:'#6b665d',
+          beer:'#FFD60A', beerd:'#E0BD06',
+        },
+        fontFamily: {
+          display: ['Anton','Impact','sans-serif'],
+          chunk: ['"Bowlby One"','Anton','Impact','sans-serif'],
+          hand: ['Caveat','cursive'],
+          sans: ['Inter','system-ui','sans-serif'],
+        },
+      }
+    }
+  };
+</script>
+<style>
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  body { background:#0A0A0A; color:#F5F1E8; font-family:'Inter',system-ui,sans-serif; overflow-x: hidden; }
+
+  .display { font-family:'Anton',Impact,sans-serif; letter-spacing:.005em; line-height:.92; }
+  .chunk   { font-family:'Bowlby One','Anton',Impact,sans-serif; letter-spacing:-.005em; line-height:.95; }
+  .hand    { font-family:'Caveat',cursive; }
+
+  /* === DOODLE BACKDROP (originale) === */
+  .doodle-bg {
+    background-color:#0A0A0A;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='340' height='340' viewBox='0 0 340 340'><g fill='none' stroke='%231c1c1c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M30 60 h44 v62 h-44 z'/><path d='M74 72 h12 v34 h-12'/><path d='M38 70 h28 M38 78 h28 M38 86 h28' stroke-width='1.2'/><path d='M170 40 l8 22 23 1 -19 14 7 22 -19 -13 -19 13 7 -22 -19 -14 23 -1z'/><path d='M270 50 l-14 18 6 26 16 0 6 -26 z M270 56 l-9 12 4 18 10 0 4 -18 z' stroke-width='1.2'/><line x1='270' y1='50' x2='270' y2='94' stroke-width='1'/><path d='M115 130 l16 -6 -8 18 16 -4 -22 32 8 -22 -16 4 z'/><path d='M210 180 h70 v60 h-70 z M218 188 h12 v18 h-12 z M236 188 h12 v18 h-12 z M254 188 h12 v18 h-12 z M218 212 h12 v18 h-12 z M236 212 h12 v18 h-12 z M254 212 h12 v18 h-12 z'/><path d='M40 200 h16 v8 l4 6 v50 h-24 v-50 l4 -6 z'/><line x1='40' y1='220' x2='56' y2='220' stroke-width='3' stroke='%23FFD60A' stroke-opacity='.18'/><circle cx='150' cy='250' r='14'/><circle cx='150' cy='250' r='5'/><path d='M295 270 q-10 -10 -20 0 q-15 15 0 30 q20 20 40 0' /><path d='M70 290 l20 -32 20 32 z'/><g transform='translate(310,150)' stroke-width='1.6'><line x1='-10' y1='0' x2='10' y2='0'/><line x1='0' y1='-10' x2='0' y2='10'/><line x1='-7' y1='-7' x2='7' y2='7'/><line x1='-7' y1='7' x2='7' y2='-7'/></g><path d='M180 305 q10 -10 20 0 t20 0 t20 0' stroke-width='1.4'/></g></svg>");
+    background-repeat: repeat; background-size: 340px 340px;
+  }
+  .barley-bg {
+    background-color:#0A0A0A;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='110' height='180' viewBox='0 0 110 180'><g stroke='%23FFD60A' stroke-opacity='.16' stroke-width='2' fill='none' stroke-linecap='round'><line x1='55' y1='10' x2='55' y2='170'/><path d='M55 30 l-12 -6 M55 30 l12 -6'/><path d='M55 50 l-14 -6 M55 50 l14 -6'/><path d='M55 72 l-16 -6 M55 72 l16 -6'/><path d='M55 96 l-18 -6 M55 96 l18 -6'/><path d='M55 122 l-18 -6 M55 122 l18 -6'/><path d='M55 148 l-16 -6 M55 148 l16 -6'/></g></svg>");
+    background-repeat: repeat; background-size: 110px 180px;
+  }
+
+  /* placeholder a strisce per future foto */
+  .ph-photo {
+    background-color:#141414;
+    background-image: repeating-linear-gradient(135deg,#141414 0 14px,#1c1c1c 14px 28px);
+    position:relative; overflow:hidden;
+  }
+  .ph-photo::after {
+    content: attr(data-label);
+    position:absolute; left:12px; bottom:10px;
+    font-family: ui-monospace,'SF Mono',Menlo,monospace;
+    font-size:10px; letter-spacing:.1em; color:#A39E92;
+    background: rgba(10,10,10,.7); padding:4px 8px;
+    border:1px solid #2a2a28;
+  }
+
+  /* highlight giallo */
+  .hl-yellow {
+    background:#FFD60A; color:#0A0A0A;
+    padding: 0 .15em;
+    box-shadow: .2em 0 0 #FFD60A, -.05em 0 0 #FFD60A;
+    display:inline-block; transform: rotate(-1.2deg);
+  }
+
+  /* MARQUEE */
+  @keyframes marquee {
+    from { transform: translateX(0); } to { transform: translateX(-50%); }
+  }
+  .marquee-track {
+    display:inline-flex; white-space:nowrap;
+    animation: marquee 38s linear infinite; will-change: transform;
+  }
+  .marquee-tilt {
+    transform: rotate(-3deg); margin: -10px -40px;
+    background:#FFD60A; color:#0A0A0A;
+    border-top: 2px solid #0A0A0A; border-bottom: 2px solid #0A0A0A;
+  }
+  @media (prefers-reduced-motion: reduce) { .marquee-track { animation:none; } }
+
+  .nav-scrolled {
+    background: rgba(10,10,10,.85);
+    backdrop-filter: saturate(140%) blur(10px);
+    -webkit-backdrop-filter: saturate(140%) blur(10px);
+    border-bottom:1px solid #1c1c1c;
+  }
+  /* Mobile: keep the nav legible against the hero from the very top */
+  @media (max-width: 767px) {
+    #topnav {
+      background: rgba(10,10,10,.78);
+      backdrop-filter: saturate(140%) blur(8px);
+      -webkit-backdrop-filter: saturate(140%) blur(8px);
+      border-bottom: 1px solid rgba(28,28,28,.8);
+    }
+  }
+
+  /* Bottoni */
+  .btn-beer {
+    background:#FFD60A; color:#0A0A0A;
+    font-weight:700; letter-spacing:.04em; border:2px solid #FFD60A;
+    transition: transform .12s steps(2,end), background .12s steps(2,end), color .12s steps(2,end);
+  }
+  .btn-beer:hover { background:#0A0A0A; color:#FFD60A; transform: translate(-2px,-2px); box-shadow: 4px 4px 0 #FFD60A; }
+  .btn-ghost {
+    border:2px solid #FFD60A; color:#FFD60A; background:transparent;
+    font-weight:700; letter-spacing:.04em;
+    transition: transform .12s steps(2,end), background .12s steps(2,end), color .12s steps(2,end);
+  }
+  .btn-ghost:hover { background:#FFD60A; color:#0A0A0A; transform: translate(-2px,-2px); box-shadow: 4px 4px 0 #FFD60A; }
+
+  .ulink { color:#FFD60A; position:relative; font-weight:600; }
+  .ulink::after {
+    content:''; position:absolute; left:0; right:0; bottom:-2px;
+    height:1px; background:#FFD60A; transform:scaleX(0); transform-origin:left;
+    transition: transform .25s steps(3,end);
+  }
+  .ulink:hover::after { transform: scaleX(1); }
+
+  .price-row { display:grid; grid-template-columns:1fr auto; align-items:baseline; gap:12px; }
+  .price-row .name { font-weight:700; color:#FFD60A; letter-spacing:.01em; }
+  .price-row .price { font-variant-numeric: tabular-nums; font-weight:600; color:#F5F1E8; white-space:nowrap; }
+
+  .hero-overlay {
+    background: linear-gradient(180deg, rgba(10,10,10,.55) 0%, rgba(10,10,10,.40) 35%, rgba(10,10,10,.95) 100%);
+  }
+
+  .cat-card {
+    border:1px solid #2a2a28; background:#0e0e0e;
+    transition: border-color .15s steps(2,end), transform .15s steps(2,end), background .15s steps(2,end);
+  }
+  .cat-card:hover { border-color:#FFD60A; background:#141414; transform: translate(-3px,-3px); box-shadow: 6px 6px 0 #FFD60A; }
+
+  .pill {
+    display:inline-block; background:#FFD60A; color:#0A0A0A;
+    font-family:'Anton',sans-serif; letter-spacing:.12em;
+    padding: 6px 14px 4px; font-size:14px;
+    border:2px solid #0A0A0A; white-space: nowrap;
+  }
+
+  /* Reveal stepped */
+  .reveal {
+    opacity:0; transform: translateY(24px);
+    transition: opacity .45s steps(4,end), transform .45s steps(4,end);
+    transition-delay: var(--rd, 0ms);
+  }
+  .reveal.in { opacity:1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity:1; transform:none; transition:none; }
+  }
+
+  .fan-card { transition: transform .2s steps(3,end); }
+  @media (min-width: 1024px) {
+    .fan-1 { transform: rotate(-3deg); }
+    .fan-2 { transform: rotate(2deg) translateY(10px); }
+    .fan-3 { transform: rotate(-1.5deg) translateY(-6px); }
+    .fan-4 { transform: rotate(3.5deg); }
+    .fan-card:hover { transform: rotate(0) translateY(-4px); z-index: 5; }
+  }
+
+  /* Polaroid foto sparse */
+  .polaroid {
+    background:#F5F1E8; padding: 10px 10px 36px; display:inline-block;
+    box-shadow: 0 6px 0 rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.55);
+    position:relative;
+  }
+  .polaroid img { display:block; width:100%; height:100%; object-fit:cover; }
+  .polaroid .cap {
+    position:absolute; left:0; right:0; bottom:8px;
+    text-align:center; color:#0A0A0A;
+    font-family:'Caveat',cursive; font-size:18px; line-height:1;
+  }
+  .tape {
+    position:absolute; width:80px; height:22px;
+    background: rgba(255,214,10,.85);
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,.05);
+  }
+
+  /* Sticker wall (sezione laterale) */
+  .sticker {
+    display:inline-block; padding: 6px 10px;
+    font-family:'Anton',sans-serif; letter-spacing:.08em;
+    text-transform:uppercase; font-size:13px;
+    border:2px solid #0A0A0A; transform: rotate(var(--r, 0deg));
+  }
+
+  /* Map */
+  .map-grid {
+    background-color:#0e0e0e;
+    background-image:
+      linear-gradient(rgba(255,214,10,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,214,10,.05) 1px, transparent 1px);
+    background-size: 36px 36px;
+  }
+  .map-pin-pulse {
+    box-shadow: 0 0 0 0 rgba(255,214,10,.6);
+    animation: pinPulse 2.2s steps(8,end) infinite;
+  }
+  @keyframes pinPulse {
+    0% { box-shadow: 0 0 0 0 rgba(255,214,10,.55); }
+    70% { box-shadow: 0 0 0 28px rgba(255,214,10,0); }
+    100% { box-shadow: 0 0 0 0 rgba(255,214,10,0); }
+  }
+
+  .ig-tile { aspect-ratio:1/1; border:1px solid #2a2a28; position:relative; overflow:hidden; }
+  .ig-tile::after {
+    content:''; position:absolute; inset:0;
+    background: linear-gradient(180deg, transparent 60%, rgba(10,10,10,.7) 100%);
+  }
+
+  .eyebrow {
+    font-family: ui-monospace,'SF Mono',Menlo,monospace;
+    font-size:11px; letter-spacing:.22em; color:#FFD60A;
+    text-transform: uppercase;
+  }
+
+  /* Mobile menu: fullscreen overlay, hidden by default */
+  .mobile-menu {
+    position: fixed; inset: 0; z-index: 70;
+    background: #0A0A0A;
+    opacity: 0; visibility: hidden; pointer-events: none;
+    transition: opacity .25s ease, visibility .25s;
+    overflow: hidden;
+  }
+  .mobile-menu.open { opacity: 1; visibility: visible; pointer-events: auto; }
+  .mobile-menu-inner {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    padding: 88px 24px 32px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+  body.mm-open { overflow: hidden; height: 100vh; }
+  /* Header sits above the menu so the hamburger -> X stays visible & tappable */
+  #topnav { z-index: 80; }
+  .mobile-menu { z-index: 70; }
+  #hamburger { position: relative; z-index: 90; }
+  #hamburger .hb-line {
+    transition: transform .25s ease, opacity .2s ease;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+  #hamburger.is-open .hb-1 { transform: translateY(6px) rotate(45deg); }
+  #hamburger.is-open .hb-2 { opacity: 0; }
+  #hamburger.is-open .hb-3 { transform: translateY(-6px) rotate(-45deg); }
+
+  .tape-divider {
+    height: 14px;
+    background: repeating-linear-gradient(135deg, #FFD60A 0 12px, #0A0A0A 12px 16px);
+    border-top: 2px solid #0A0A0A; border-bottom: 2px solid #0A0A0A;
+  }
+
+  /* === SCROLL-DRIVEN, NON-BLOCKING ===
+     La scena occupa altezza normale; il progresso (0..1) si calcola
+     da quanto la sezione attraversa il viewport. Niente sticky, niente
+     stop forzati: chi scrolla veloce passa, chi rallenta vede l'animazione. */
+  .scene-block { position: relative; }
+  .scene-progress { transition: none; will-change: transform, opacity; }
+
+  /* testimonial poster */
+  .quote-card {
+    background:#FFD60A; color:#0A0A0A;
+    border:3px solid #0A0A0A;
+    transform: rotate(var(--r, -1deg));
+    transition: transform .15s steps(2,end);
+  }
+  .quote-card:hover { transform: rotate(0); }
+</style>
+</head>
+<body class="bg-ink text-bone">
+
+<!-- ============= NAV ============= -->
+<header id="topnav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <a href="#top" class="flex items-center gap-2 min-w-0" aria-label="Sam Beer Shop home">
+      <img src="assets/logo.jpeg" alt="Sam Beer Shop" width="40" height="40" class="w-9 h-9 sm:w-10 sm:h-10 rounded-full object-cover ring-1 ring-line shrink-0"/>
+      <span class="chunk text-bone text-lg sm:text-xl tracking-wide leading-none">SAM<span class="text-beer">BEER</span></span>
+    </a>
+
+    <nav class="hidden md:flex items-center gap-8 text-sm uppercase tracking-widest font-semibold">
+      <a href="#birre" class="text-bone/85 hover:text-beer transition">Birre</a>
+      <a href="#menu" class="text-bone/85 hover:text-beer transition">Menu</a>
+      <a href="#quartiere" class="text-bone/85 hover:text-beer transition">Quartiere</a>
+      <a href="#visitaci" class="text-bone/85 hover:text-beer transition">Visitaci</a>
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <!-- TODO: sostituire link reale -->
+      <a href="#prenota" class="btn-beer hidden sm:inline-flex items-center px-4 py-2.5 text-xs uppercase">Prenota</a>
+      <button id="hamburger" class="md:hidden p-2 -mr-2 relative" aria-label="Apri menu" aria-expanded="false">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#F5F1E8" stroke-width="2" stroke-linecap="square">
+          <line class="hb-line hb-1" x1="3" y1="6" x2="21" y2="6"/>
+          <line class="hb-line hb-2" x1="3" y1="12" x2="21" y2="12"/>
+          <line class="hb-line hb-3" x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile fullscreen menu (outside header so it can layer above everything) -->
+<div id="mobileMenu" class="mobile-menu md:hidden" aria-hidden="true">
+  <!-- subtle yellow accent stripes (decorative, behind content) -->
+  <div class="absolute inset-0 pointer-events-none opacity-[0.06]" aria-hidden="true" style="background-image: repeating-linear-gradient(135deg, #FFD60A 0 1px, transparent 1px 14px);"></div>
+
+  <div class="mobile-menu-inner">
+    <p class="eyebrow text-beer mb-2">Naviga</p>
+    <p class="text-mute text-xs uppercase tracking-widest mb-6">SAM BEER · EUR</p>
+
+    <nav class="flex flex-col mb-8">
+      <a href="#birre" class="mm-link group flex items-baseline justify-between py-5 border-b border-line/60">
+        <span class="flex items-baseline gap-4">
+          <span class="font-mono text-mute text-xs">/01</span>
+          <span class="chunk text-bone text-[34px] leading-none group-active:text-beer transition">BIRRE</span>
+        </span>
+        <span class="text-beer text-2xl">→</span>
+      </a>
+      <a href="#menu" class="mm-link group flex items-baseline justify-between py-5 border-b border-line/60">
+        <span class="flex items-baseline gap-4">
+          <span class="font-mono text-mute text-xs">/02</span>
+          <span class="chunk text-bone text-[34px] leading-none group-active:text-beer transition">MENU</span>
+        </span>
+        <span class="text-beer text-2xl">→</span>
+      </a>
+      <a href="#quartiere" class="mm-link group flex items-baseline justify-between py-5 border-b border-line/60">
+        <span class="flex items-baseline gap-4">
+          <span class="font-mono text-mute text-xs">/03</span>
+          <span class="chunk text-bone text-[34px] leading-none group-active:text-beer transition">QUARTIERE</span>
+        </span>
+        <span class="text-beer text-2xl">→</span>
+      </a>
+      <a href="#visitaci" class="mm-link group flex items-baseline justify-between py-5 border-b border-line/60">
+        <span class="flex items-baseline gap-4">
+          <span class="font-mono text-mute text-xs">/04</span>
+          <span class="chunk text-bone text-[34px] leading-none group-active:text-beer transition">VISITACI</span>
+        </span>
+        <span class="text-beer text-2xl">→</span>
+      </a>
+    </nav>
+
+    <!-- TODO: sostituire link reale -->
+    <a href="#prenota" class="mm-link btn-beer w-full inline-flex items-center justify-center px-6 py-5 text-sm uppercase tracking-widest">
+      Prenota un tavolo
+      <svg class="ml-2" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+
+    <div class="mt-10 pt-8 border-t border-line/60 grid grid-cols-2 gap-5 text-xs">
+      <div>
+        <p class="eyebrow text-beer mb-2">Indirizzo</p>
+        <p class="text-bone leading-relaxed">Viale dell'Aeronautica 51<br/>00144 Roma · EUR</p>
+      </div>
+      <div>
+        <p class="eyebrow text-beer mb-2">Aperto</p>
+        <p class="text-bone leading-relaxed">Mar — Dom<br/>12:00 — 01:00</p>
+      </div>
+    </div>
+
+    <div class="mt-6 flex items-center gap-4 text-xs flex-wrap">
+      <!-- TODO: sostituire link reali -->
+      <a href="#" class="flex items-center gap-2 text-bone hover:text-beer transition">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg>
+        @sambeershop
+      </a>
+      <span class="text-line">·</span>
+      <a href="tel:+390600000000" class="text-bone hover:text-beer transition">06 0000 0000</a>
+    </div>
+
+    <p class="mt-8 text-mute text-[10px] uppercase tracking-widest">EST. EUR · ROMA</p>
+  </div>
+</div>
+
+<!-- ============= HERO ============= -->
+<section id="top" class="relative min-h-[100svh] w-full flex items-end overflow-hidden">
+  <img src="assets/interno-bancone.jpg" alt="Interno Sam Beer Shop" class="absolute inset-0 w-full h-full object-cover"/>
+  <div class="hero-overlay absolute inset-0"></div>
+
+  <div class="relative max-w-7xl mx-auto w-full px-5 sm:px-8 lg:px-10 pb-14 sm:pb-20 pt-28">
+    <div class="max-w-3xl">
+      <div class="reveal mb-5 flex items-center gap-3 flex-wrap">
+        <span class="pill">SAM BEER · EUR</span>
+        <p class="eyebrow">Viale dell'Aeronautica 51 · Roma EUR</p>
+      </div>
+      <h1 class="reveal chunk text-bone text-[14vw] sm:text-[10vw] md:text-[8.2vw] lg:text-[110px]" style="--rd:80ms;">
+        BIRRA VERA.<br/>
+        GENTE VERA.<br/>
+        <span class="hl-yellow">EUR SUD.</span>
+      </h1>
+      <p class="reveal mt-7 sm:mt-8 text-bone/85 text-base sm:text-lg max-w-xl leading-relaxed" style="--rd:160ms;">
+        Il pub di quartiere all'EUR. Birra artigianale, panini fatti come si deve,
+        cocktail che reggono il banco. A pochi passi dalla metro, aperto fino all'una.
+      </p>
+      <div class="reveal mt-8 flex flex-wrap gap-3" style="--rd:240ms;">
+        <!-- TODO: sostituire link reale -->
+        <a href="#prenota" class="btn-beer inline-flex items-center px-6 py-4 text-sm uppercase">
+          Prenota un tavolo
+          <svg class="ml-2" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#menu" class="btn-ghost inline-flex items-center px-6 py-4 text-sm uppercase">Vedi il menu</a>
+      </div>
+
+      <div class="reveal mt-10 flex flex-wrap gap-x-6 gap-y-2 text-xs uppercase tracking-widest text-mute" style="--rd:320ms;">
+        <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-beer inline-block"></span>Aperto oggi · 12:00 — 01:00</span>
+        <span class="hidden sm:inline">·</span>
+        <span>Spina che gira ogni settimana</span>
+      </div>
+    </div>
+  </div>
+
+
+</section>
+
+<!-- ============= MARQUEE ============= -->
+<section aria-hidden="true" class="bg-beer text-ink overflow-hidden marquee-tilt relative z-10">
+  <div class="marquee-track py-4">
+    <span class="chunk text-3xl sm:text-4xl px-6">CRAFT BEER</span><span class="chunk text-3xl sm:text-4xl px-6">★</span>
+    <span class="chunk text-3xl sm:text-4xl px-6">CRAFT FOOD</span><span class="chunk text-3xl sm:text-4xl px-6">★</span>
+    <span class="chunk text-3xl sm:text-4xl px-6">COCKTAILS</span><span class="chunk text-3xl sm:text-4xl px-6">★</span>
+    <span class="chunk text-3xl sm:text-4xl px-6">APERTI FINO ALL'1:00</span><span class="chunk text-3xl sm:text-4xl px-6">★</span>
+    <span class="chunk text-3xl sm:text-4xl px-6">AERONAUTICA 51</span><span class="chunk text-3xl sm:text-4xl px-6">★</span>
+    <span class="chunk text-3xl sm:text-4xl px-6">CRAFT BEER</span><span class="chunk text-3xl sm:text-4xl px-6">★</span>
+    <span class="chunk text-3xl sm:text-4xl px-6">CRAFT FOOD</span><span class="chunk text-3xl sm:text-4xl px-6">★</span>
+    <span class="chunk text-3xl sm:text-4xl px-6">COCKTAILS</span><span class="chunk text-3xl sm:text-4xl px-6">★</span>
+    <span class="chunk text-3xl sm:text-4xl px-6">APERTI FINO ALL'1:00</span><span class="chunk text-3xl sm:text-4xl px-6">★</span>
+    <span class="chunk text-3xl sm:text-4xl px-6">AERONAUTICA 51</span><span class="chunk text-3xl sm:text-4xl px-6">★</span>
+  </div>
+</section>
+
+<!-- ============= SCROLL SCENE: BICCHIERE CHE SI RIEMPIE (sketchy, scroll-driven) ============= -->
+<section id="scrollscene" class="scene-block relative bg-ink py-24 sm:py-32 px-5 sm:px-8 lg:px-10 overflow-hidden" data-scene="glass">
+  <div class="absolute inset-0 doodle-bg opacity-40 pointer-events-none"></div>
+  <div class="relative max-w-7xl w-full mx-auto grid lg:grid-cols-2 gap-12 items-center">
+
+    <div>
+      <p class="eyebrow mb-4">/00 — Il rito</p>
+      <h2 class="reveal chunk text-bone text-5xl sm:text-7xl mb-6" style="--rd:60ms;">VUOTO?<br/><span class="hl-yellow">CI PENSIAMO NOI.</span></h2>
+      <p class="reveal text-mute text-base sm:text-lg max-w-md leading-relaxed" style="--rd:140ms;">
+        Spina aperta, inclinazione giusta, due dita di schiuma. <br class="hidden sm:inline"/>
+        <span class="text-bone">Scrolla — la riempiamo insieme.</span>
+      </p>
+      <div class="mt-8 reveal" style="--rd:220ms;" aria-hidden="true">
+        <div class="relative h-1.5 bg-line w-full max-w-xs">
+          <div id="fillBar" class="absolute inset-y-0 left-0 bg-beer" style="width:0%;"></div>
+        </div>
+        <p class="font-mono text-[10px] tracking-widest text-mute mt-2"><span id="fillPct">0</span>% — riempimento</p>
+      </div>
+    </div>
+
+    <div class="flex justify-center">
+      <svg id="glassSvg" viewBox="0 0 260 400" width="100%" style="max-width:360px; filter: drop-shadow(0 18px 32px rgba(0,0,0,.6));" fill="none">
+        <defs>
+          <!-- Pint glass interior clip (slightly tapered, with curved rim & base) -->
+          <clipPath id="glassClip">
+            <path d="M70 60 Q70 56 74 56 H186 Q190 56 190 60 L178 348 Q178 354 172 354 H88 Q82 354 82 348 Z"/>
+          </clipPath>
+          <!-- Beer body gradient -->
+          <linearGradient id="beerGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#FFE45C"/>
+            <stop offset="40%" stop-color="#FFD60A"/>
+            <stop offset="100%" stop-color="#C99500"/>
+          </linearGradient>
+          <linearGradient id="beerShine" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#FFF7C8" stop-opacity="0.5"/>
+            <stop offset="20%" stop-color="#FFF7C8" stop-opacity="0"/>
+          </linearGradient>
+          <!-- Foam gradients — creamy, layered like real beer head -->
+          <linearGradient id="foamGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#FFFFFF"/>
+            <stop offset="35%" stop-color="#FBF6E4"/>
+            <stop offset="75%" stop-color="#EDE2C0"/>
+            <stop offset="100%" stop-color="#C9B98A"/>
+          </linearGradient>
+          <radialGradient id="foamBubble" cx="0.35" cy="0.3" r="0.7">
+            <stop offset="0%" stop-color="#FFFFFF"/>
+            <stop offset="55%" stop-color="#FAF4DD"/>
+            <stop offset="100%" stop-color="#D8C896"/>
+          </radialGradient>
+          <filter id="foamRoughen" x="-5%" y="-5%" width="110%" height="110%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="5"/>
+            <feDisplacementMap in="SourceGraphic" scale="1.2"/>
+          </filter>
+          <!-- Glass body subtle gradient -->
+          <linearGradient id="glassBody" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#1a1a1a" stop-opacity="0.6"/>
+            <stop offset="50%" stop-color="#0e0e0e" stop-opacity="0.2"/>
+            <stop offset="100%" stop-color="#1a1a1a" stop-opacity="0.6"/>
+          </linearGradient>
+        </defs>
+
+        <!-- decorative sketch wisps around the glass -->
+        <g stroke="#FFD60A" stroke-width="1.5" stroke-linecap="round" opacity=".5" fill="none">
+          <path d="M22 80 q8 -10 18 -3"/>
+          <path d="M232 100 q-8 -10 -18 -3"/>
+          <path d="M16 220 l10 -4 M18 232 l10 -4"/>
+          <path d="M242 240 l-10 -4 M240 252 l-10 -4"/>
+          <path d="M30 348 q5 -7 14 -2"/>
+          <path d="M218 348 q-5 -7 -14 -2"/>
+          <circle cx="38" cy="160" r="2.5"/>
+          <circle cx="226" cy="180" r="2"/>
+        </g>
+
+        <!-- Glass back wall (subtle fill so it reads as a vessel) -->
+        <path d="M70 60 Q70 56 74 56 H186 Q190 56 190 60 L178 348 Q178 354 172 354 H88 Q82 354 82 348 Z"
+              fill="url(#glassBody)"/>
+
+        <!-- Liquid + bubbles inside the clip -->
+        <g clip-path="url(#glassClip)">
+          <rect id="liquid" x="60" y="354" width="150" height="0" fill="url(#beerGrad)"/>
+          <!-- left-edge highlight on liquid -->
+          <rect id="liquidShine" x="60" y="354" width="150" height="0" fill="url(#beerShine)"/>
+          <!-- meniscus / surface line -->
+          <g id="liquidHatch" opacity="0">
+            <line x1="60" y1="0" x2="210" y2="0" id="hatch1" stroke="#A87800" stroke-width="1.2" stroke-opacity=".55"/>
+            <line x1="60" y1="0" x2="210" y2="0" id="hatch2" stroke="#FFF7C8" stroke-width="0.8" stroke-opacity=".7"/>
+          </g>
+          <!-- bubbles rising -->
+          <g id="bubbles" opacity="0" fill="#FFF7C8">
+            <circle cx="92" cy="280" r="2.5"/>
+            <circle cx="128" cy="250" r="1.8"/>
+            <circle cx="158" cy="290" r="2.2"/>
+            <circle cx="108" cy="320" r="1.6"/>
+            <circle cx="170" cy="330" r="2"/>
+            <circle cx="140" cy="220" r="1.5"/>
+            <circle cx="100" cy="200" r="1.2"/>
+            <circle cx="180" cy="240" r="1.4"/>
+          </g>
+          <!-- carbonation stream from base -->
+          <g id="carbStream" opacity="0" fill="#FFF7C8">
+            <circle cx="130" cy="340" r="1"/>
+            <circle cx="132" cy="320" r="1.2"/>
+            <circle cx="128" cy="300" r="1"/>
+            <circle cx="131" cy="280" r="1.3"/>
+            <circle cx="129" cy="260" r="1"/>
+          </g>
+        </g>
+
+        <!-- Foam (on top, appears late) — layered creamy beer head -->
+        <g id="foam" opacity="0">
+          <!-- shadow under foam (where it meets liquid) -->
+          <ellipse cx="130" cy="78" rx="58" ry="5" fill="#A89360" opacity=".5"/>
+
+          <!-- back layer: rougher, darker bubbles -->
+          <g fill="url(#foamBubble)" opacity=".85">
+            <circle cx="78" cy="62" r="8"/>
+            <circle cx="92" cy="56" r="11"/>
+            <circle cx="108" cy="50" r="13"/>
+            <circle cx="125" cy="46" r="14"/>
+            <circle cx="142" cy="48" r="13"/>
+            <circle cx="158" cy="52" r="12"/>
+            <circle cx="172" cy="58" r="10"/>
+            <circle cx="184" cy="64" r="8"/>
+          </g>
+
+          <!-- main creamy body -->
+          <path d="M70 70 Q72 56 84 52 Q92 42 106 44 Q118 36 130 38 Q142 36 152 42 Q166 42 176 50 Q188 54 190 70 Q186 78 178 78 L82 78 Q72 78 70 70 Z"
+                fill="url(#foamGrad)"/>
+
+          <!-- front layer: lighter bubbles for highlights -->
+          <g fill="url(#foamBubble)">
+            <circle cx="86" cy="64" r="6"/>
+            <circle cx="100" cy="58" r="8"/>
+            <circle cx="116" cy="54" r="9"/>
+            <circle cx="132" cy="52" r="10"/>
+            <circle cx="148" cy="56" r="9"/>
+            <circle cx="164" cy="60" r="7"/>
+            <circle cx="178" cy="66" r="6"/>
+          </g>
+
+          <!-- top sparkle highlights -->
+          <g fill="#FFFFFF" opacity=".9">
+            <circle cx="98" cy="50" r="1.8"/>
+            <circle cx="118" cy="46" r="2.2"/>
+            <circle cx="138" cy="44" r="2.5"/>
+            <circle cx="156" cy="48" r="2"/>
+            <circle cx="170" cy="54" r="1.6"/>
+          </g>
+
+          <!-- pinprick foam texture (popped bubble holes) -->
+          <g fill="#0A0A0A" opacity=".35">
+            <circle cx="92" cy="58" r=".9"/>
+            <circle cx="108" cy="54" r="1.1"/>
+            <circle cx="124" cy="50" r=".8"/>
+            <circle cx="142" cy="52" r="1"/>
+            <circle cx="158" cy="58" r=".9"/>
+            <circle cx="174" cy="62" r=".8"/>
+            <circle cx="100" cy="68" r=".7"/>
+            <circle cx="148" cy="68" r="1"/>
+            <circle cx="116" cy="64" r=".8"/>
+            <circle cx="134" cy="62" r=".7"/>
+          </g>
+
+          <!-- foam meniscus along the rim -->
+          <path d="M72 70 Q130 76 188 70" stroke="#C9B98A" stroke-width="1" fill="none" opacity=".6"/>
+        </g>
+
+        <!-- Glass outline — clean, slightly thicker, with a subtle sketch double-line -->
+        <path d="M70 60 Q70 56 74 56 H186 Q190 56 190 60 L178 348 Q178 354 172 354 H88 Q82 354 82 348 Z"
+              stroke="#FFD60A" stroke-width="2.5" stroke-linejoin="round" fill="none"/>
+        <path d="M73 60 Q73 59 75 59 H185 Q187 59 187 60 L176 346 Q176 351 171 351 H89 Q84 351 84 346 Z"
+              stroke="#FFD60A" stroke-width="0.8" stroke-linejoin="round" stroke-opacity=".4" fill="none"/>
+
+        <!-- Glass rim ellipse (gives the pint a real top) -->
+        <ellipse cx="130" cy="60" rx="60" ry="6" stroke="#FFD60A" stroke-width="2" fill="none"/>
+        <ellipse cx="130" cy="60" rx="60" ry="6" stroke="#FFF7C8" stroke-width="0.8" stroke-opacity=".4" fill="none" transform="translate(0 -1)"/>
+
+        <!-- Inner glass highlights (left & right reflections) -->
+        <path d="M82 80 L78 330" stroke="#FFF7C8" stroke-width="2.5" stroke-linecap="round" stroke-opacity=".35"/>
+        <path d="M88 80 L85 320" stroke="#FFF7C8" stroke-width="1" stroke-linecap="round" stroke-opacity=".25"/>
+        <path d="M178 90 L174 310" stroke="#FFF7C8" stroke-width="1.2" stroke-linecap="round" stroke-opacity=".25"/>
+
+        <!-- Base shadow ellipse -->
+        <ellipse cx="130" cy="356" rx="48" ry="3" fill="#000" opacity=".45"/>
+
+        <!-- Tap silhouette at top (decorative) -->
+        <g opacity=".7">
+          <rect x="124" y="0" width="12" height="20" fill="#FFD60A" rx="1"/>
+          <rect x="118" y="18" width="24" height="6" fill="#FFD60A" rx="1"/>
+        </g>
+
+        <!-- Falling droplet -->
+        <g id="drop" opacity="0">
+          <path d="M130 26 q-4 8 0 14 q4 -6 0 -14 z" fill="#FFD60A"/>
+        </g>
+
+        <!-- Splash marks on the side -->
+        <g id="splash" opacity="0" stroke="#FFD60A" stroke-width="1.5" stroke-linecap="round" fill="none">
+          <path d="M204 100 l10 -3 M206 112 l12 0 M204 124 l10 5"/>
+          <path d="M52 130 l-10 -3 M50 142 l-12 2 M54 154 l-10 4"/>
+        </g>
+      </svg>
+    </div>
+
+  </div>
+</section>
+
+<!--
+HEADLINE ALTERNATIVE per A/B test:
+2. "Una pinta, due chiacchiere, una sera che non finisce."
+3. "Il pub di quartiere che cercavi all'EUR. Era ora."
+4. "Niente fronzoli. Birra buona, panini seri, gente alla mano."
+5. "Stasera bevi bene. E mangi pure meglio."
+6. "Aeronautica 51. Da quando hai capito che la Heineken non basta piu."
+-->
+
+<!-- ============= BIRRE ============= -->
+<section id="birre" class="relative py-24 sm:py-32 px-5 sm:px-8 lg:px-10 doodle-bg overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-b from-ink via-transparent to-ink pointer-events-none"></div>
+
+  <div class="relative max-w-7xl mx-auto">
+    <div class="flex items-end justify-between flex-wrap gap-4 mb-14">
+      <div>
+        <p class="eyebrow mb-4 reveal">/01 — Dal banco</p>
+        <h2 class="reveal chunk text-bone text-5xl sm:text-7xl lg:text-8xl" style="--rd:60ms;">
+          QUELLO CHE<br/>
+          <span class="hl-yellow">TROVI ALLA SPINA.</span>
+        </h2>
+      </div>
+      <p class="reveal text-mute max-w-sm text-sm sm:text-base" style="--rd:140ms;">
+        Non facciamo finta di tenere sempre le stesse 30 spine.
+        Ne giriamo poche, scelte bene. Ecco i registri.
+      </p>
+    </div>
+
+    <!-- foto sparse polaroid -->
+    <div class="mb-14 flex flex-wrap items-start gap-6 sm:gap-10 justify-center lg:justify-between">
+      <div class="polaroid reveal" style="width:200px; height:240px; transform: rotate(-4deg);">
+        <span class="tape" style="top:-10px; left:60px; transform: rotate(-6deg);"></span>
+        <img src="assets/interno-rame.jpg" alt="Bancone in rame Sam Beer"/>
+        <span class="cap">il banco · always</span>
+      </div>
+      <div class="polaroid reveal" style="width:200px; height:240px; transform: rotate(3deg);" data-rd="120">
+        <span class="tape" style="top:-8px; right:50px; transform: rotate(8deg);"></span>
+        <img src="assets/birra.jpg" alt="Birra alla spina"/>
+        <span class="cap">spina del giovedi</span>
+      </div>
+      <div class="polaroid reveal" style="width:200px; height:240px; transform: rotate(-2deg);" data-rd="240">
+        <span class="tape" style="top:-10px; left:50%; transform: translateX(-50%) rotate(-3deg);"></span>
+        <img src="assets/bicchiere-sam.jpg" alt="Bicchiere Sam Beer"/>
+        <span class="cap">il nostro bicchiere</span>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-4">
+      <article class="reveal fan-card fan-1 cat-card p-6 sm:p-7" style="--rd:0ms;">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="#FFD60A" stroke-width="1.6">
+          <path d="M24 6 L36 24 L24 42 L12 24 Z"/>
+          <path d="M24 14 L30 24 L24 34 L18 24 Z" fill="#FFD60A" fill-opacity=".15"/>
+          <line x1="24" y1="6" x2="24" y2="42"/>
+        </svg>
+        <h3 class="chunk text-3xl sm:text-4xl text-beer mt-5">IPA CHE<br/>PUNGONO</h3>
+        <p class="mt-3 text-mute text-sm leading-relaxed">
+          Le luppolate decise, americane o europee, per chi vuole sentire il sapore.
+          Amaro che resta in bocca, profumo di agrumi e resina.
+        </p>
+      </article>
+
+      <article class="reveal fan-card fan-2 cat-card p-6 sm:p-7" style="--rd:90ms;">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="#FFD60A" stroke-width="1.6">
+          <path d="M14 8 H34 L31 42 H17 Z"/>
+          <line x1="15.5" y1="20" x2="32.5" y2="20"/>
+          <rect x="18" y="24" width="12" height="6" fill="#FFD60A" fill-opacity=".18" stroke="none"/>
+        </svg>
+        <h3 class="chunk text-3xl sm:text-4xl text-beer mt-5">LAGER<br/>PULITE</h3>
+        <p class="mt-3 text-mute text-sm leading-relaxed">
+          Per le serate lunghe, le cene, le prime birre della giornata.
+          Secche, beverine, mai banali.
+        </p>
+      </article>
+
+      <article class="reveal fan-card fan-3 cat-card p-6 sm:p-7" style="--rd:180ms;">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="#FFD60A" stroke-width="1.6">
+          <path d="M12 16 H30 V40 H12 Z"/>
+          <path d="M30 20 H36 V32 H30"/>
+          <path d="M12 16 Q14 12 17 14 Q20 10 23 14 Q26 11 30 16" fill="#FFD60A" fill-opacity=".2"/>
+        </svg>
+        <h3 class="chunk text-3xl sm:text-4xl text-beer mt-5">STOUT DA<br/>DIVANO</h3>
+        <p class="mt-3 text-mute text-sm leading-relaxed">
+          Scure, dense, da tenere in mano mezz'ora.
+          Caffe, cioccolato, fumo. Una basta.
+        </p>
+      </article>
+
+      <article class="reveal fan-card fan-4 cat-card p-6 sm:p-7" style="--rd:270ms;">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="#FFD60A" stroke-width="1.6">
+          <circle cx="24" cy="24" r="18"/>
+          <path d="M18 18 Q18 13 24 13 Q30 13 30 19 Q30 23 24 25 V29"/>
+          <circle cx="24" cy="34" r="1.6" fill="#FFD60A"/>
+        </svg>
+        <h3 class="chunk text-3xl sm:text-4xl text-beer mt-5">LE SORPRESE<br/>DEL BANCO</h3>
+        <p class="mt-3 text-mute text-sm leading-relaxed">
+          Quello che gira questa settimana: belga, sour, special edition.
+          Chiedici, sappiamo cosa ti piace.
+        </p>
+      </article>
+    </div>
+
+    <p class="reveal mt-14 text-center text-bone/85 text-base sm:text-lg">
+      Le spine girano ogni settimana. Per sapere cosa stiamo spillando ora,
+      <!-- TODO: sostituire link reale -->
+      <a href="#instagram" class="ulink">seguici su Instagram →</a>
+    </p>
+  </div>
+</section>
+
+<!-- divisore washi-tape -->
+<div class="tape-divider" aria-hidden="true"></div>
+
+<!-- ============= MENU ============= -->
+<section id="menu" class="relative py-24 sm:py-32 px-5 sm:px-8 lg:px-10 barley-bg">
+  <div class="absolute inset-0 bg-gradient-to-b from-ink/95 via-ink/80 to-ink pointer-events-none"></div>
+
+  <div class="relative max-w-7xl mx-auto">
+
+    <div class="mb-12 max-w-3xl">
+      <p class="eyebrow mb-4 reveal">/02 — Menu</p>
+      <h2 class="reveal chunk text-bone text-5xl sm:text-7xl lg:text-8xl" style="--rd:60ms;">
+        DA MANGIARE,<br/><span class="hl-yellow">SUL SERIO.</span>
+      </h2>
+      <p class="reveal mt-7 text-mute text-base sm:text-lg max-w-xl leading-relaxed" style="--rd:140ms;">
+        Pane buono, ingredienti che riconosci, porzioni vere.
+        Si beve birra, si mangia di conseguenza.
+      </p>
+    </div>
+
+    <!-- foto burger + panino bn affiancate al titolo menu -->
+    <div class="grid md:grid-cols-3 gap-6 mb-16">
+      <div class="reveal md:col-span-2 aspect-[4/3] md:aspect-[16/9] overflow-hidden border-2 border-line">
+        <img src="assets/burger.jpg" alt="Burger del Sam" class="w-full h-full object-cover"/>
+      </div>
+      <div class="reveal hidden md:block aspect-[4/3] md:aspect-auto overflow-hidden border-2 border-line relative" style="--rd:120ms;" data-screen-label="panino bn">
+        <img src="assets/panino-bn.jpg" alt="Cliente al locale" class="w-full h-full object-cover grayscale"/>
+        <div class="absolute bottom-3 left-3 right-3 bg-ink/85 border border-beer p-3">
+          <p class="hand text-beer text-2xl leading-none">"il classico funziona sempre"</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAGLIERI -->
+    <div class="mb-16 reveal">
+      <div class="flex items-baseline gap-4 mb-7 pb-4 border-b border-line">
+        <h3 class="chunk text-3xl sm:text-4xl text-beer">TAGLIERI</h3>
+        <span class="eyebrow text-mute">/da condividere</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-x-12 gap-y-6">
+        <div class="price-row"><div><div class="name">Tagliere del Sam</div><p class="text-mute text-sm mt-1">Salumi del Lazio, pecorino stagionato, formaggio erborinato, miele, mostarda, pane caldo.</p></div><span class="price">18 €</span></div>
+        <div class="price-row"><div><div class="name">Tagliere di salumi</div><p class="text-mute text-sm mt-1">Selezione del giorno: prosciutto, coppa, salame, lardo. Cipolla rossa caramellata.</p></div><span class="price">14 €</span></div>
+        <div class="price-row"><div><div class="name">Tagliere di formaggi</div><p class="text-mute text-sm mt-1">Cinque formaggi con composte, frutta secca, miele d'acacia, crackers ai semi.</p></div><span class="price">14 €</span></div>
+        <div class="price-row"><div><div class="name">Fritto misto del banco</div><p class="text-mute text-sm mt-1">Olive ascolane, suppli, crocchette di patate, fiori di zucca. Da mangiare caldo.</p></div><span class="price">12 €</span></div>
+      </div>
+    </div>
+
+    <!-- PANINI -->
+    <div class="mb-16 reveal">
+      <div class="flex items-baseline gap-4 mb-7 pb-4 border-b border-line">
+        <h3 class="chunk text-3xl sm:text-4xl text-beer">PANINI</h3>
+        <span class="eyebrow text-mute">/pane fresco ogni giorno</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-x-12 gap-y-6">
+        <div class="price-row"><div><div class="name">Il Pecora Nera</div><p class="text-mute text-sm mt-1">Hamburger di chianina 200g, cheddar fuso, bacon croccante, cipolla caramellata, salsa BBQ affumicata.</p></div><span class="price">12 €</span></div>
+        <div class="price-row"><div><div class="name">Aeronautica 51</div><p class="text-mute text-sm mt-1">Pulled pork cotto a bassa temperatura, coleslaw, sottaceti, salsa al bourbon. Lento.</p></div><span class="price">11 €</span></div>
+        <div class="price-row"><div><div class="name">Il Romano</div><p class="text-mute text-sm mt-1">Porchetta di Ariccia, pecorino, rucola, pomodorini secchi, maionese al pepe.</p></div><span class="price">10 €</span></div>
+        <div class="price-row"><div><div class="name">Il Vegetariano</div><p class="text-mute text-sm mt-1">Burger di legumi, hummus, melanzane grigliate, pomodoro, lattuga, cipolla rossa.</p></div><span class="price">10 €</span></div>
+        <div class="price-row"><div><div class="name">Il Classico</div><p class="text-mute text-sm mt-1">Hamburger 180g, cheddar, lattuga, pomodoro, cipolla, salsa della casa. Senza fronzoli.</p></div><span class="price">9 €</span></div>
+        <div class="price-row"><div><div class="name">Il Piccante</div><p class="text-mute text-sm mt-1">Hamburger, provola affumicata, jalapenos, cipolla croccante, maionese al chipotle.</p></div><span class="price">11 €</span></div>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-x-12 gap-y-14 mb-16">
+      <div class="reveal">
+        <div class="flex items-baseline gap-4 mb-7 pb-4 border-b border-line">
+          <h3 class="chunk text-3xl sm:text-4xl text-beer">INSALATE</h3>
+        </div>
+        <div class="space-y-6">
+          <div class="price-row"><div><div class="name">Caesar del Sam</div><p class="text-mute text-sm mt-1">Pollo grigliato, lattuga romana, parmigiano, crostini, salsa caesar fatta in casa.</p></div><span class="price">10 €</span></div>
+          <div class="price-row"><div><div class="name">Mediterranea</div><p class="text-mute text-sm mt-1">Mozzarella di bufala, pomodorini confit, olive taggiasche, basilico, pane carasau.</p></div><span class="price">9 €</span></div>
+          <div class="price-row"><div><div class="name">Greca</div><p class="text-mute text-sm mt-1">Feta, cetrioli, pomodori, olive nere, cipolla rossa, origano, olio EVO.</p></div><span class="price">9 €</span></div>
+        </div>
+      </div>
+
+      <div class="reveal" style="--rd:80ms;">
+        <div class="flex items-baseline gap-4 mb-7 pb-4 border-b border-line">
+          <h3 class="chunk text-3xl sm:text-4xl text-beer">CONTORNI</h3>
+        </div>
+        <div class="space-y-6">
+          <div class="price-row"><div><div class="name">Patatine fritte</div><p class="text-mute text-sm mt-1">Tagliate a mano, doppia frittura, sale grosso. Come si deve.</p></div><span class="price">5 €</span></div>
+          <div class="price-row"><div><div class="name">Patate al forno</div><p class="text-mute text-sm mt-1">Con rosmarino, aglio in camicia, fior di sale.</p></div><span class="price">5 €</span></div>
+          <div class="price-row"><div><div class="name">Onion rings</div><p class="text-mute text-sm mt-1">Anelli di cipolla in pastella, salsa BBQ a parte.</p></div><span class="price">6 €</span></div>
+          <div class="price-row"><div><div class="name">Verdure grigliate</div><p class="text-mute text-sm mt-1">Zucchine, melanzane, peperoni, olio EVO e basilico.</p></div><span class="price">6 €</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <div class="flex items-baseline gap-4 mb-7 pb-4 border-b border-line">
+        <h3 class="chunk text-3xl sm:text-4xl text-beer">DOLCI</h3>
+        <span class="eyebrow text-mute">/se ce la fai</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-x-12 gap-y-6">
+        <div class="price-row"><div><div class="name">Cheesecake ai frutti rossi</div><p class="text-mute text-sm mt-1">Base biscotto, formaggio fresco, salsa di lamponi e mirtilli.</p></div><span class="price">6 €</span></div>
+        <div class="price-row"><div><div class="name">Tiramisu</div><p class="text-mute text-sm mt-1">Quello classico. Mascarpone, savoiardi, caffe, cacao amaro.</p></div><span class="price">6 €</span></div>
+        <div class="price-row"><div><div class="name">Brownie con gelato</div><p class="text-mute text-sm mt-1">Brownie tiepido al cioccolato fondente, gelato fior di latte.</p></div><span class="price">7 €</span></div>
+        <div class="price-row"><div><div class="name">Affogato al caffe</div><p class="text-mute text-sm mt-1">Gelato fior di latte, espresso bollente versato al tavolo.</p></div><span class="price">5 €</span></div>
+      </div>
+    </div>
+
+    <p class="mt-14 text-xs text-dim leading-relaxed max-w-2xl">
+      Per allergeni e intolleranze chiedi al banco, abbiamo la lista completa.
+      Coperto e servizio non si pagano: si paga quello che mangi e quello che bevi.
+    </p>
+
+  </div>
+</section>
+
+<!-- ============= QUARTIERE ============= -->
+<section id="quartiere" class="relative py-24 sm:py-32 px-5 sm:px-8 lg:px-10 doodle-bg overflow-hidden border-t border-line">
+  <div class="absolute inset-0 bg-gradient-to-b from-ink via-transparent to-ink pointer-events-none"></div>
+
+  <div class="relative max-w-7xl mx-auto">
+
+    <div class="mb-14 max-w-3xl">
+      <p class="eyebrow mb-4 reveal">/03 — Il quartiere</p>
+      <h2 class="reveal chunk text-bone text-5xl sm:text-7xl lg:text-8xl" style="--rd:60ms;">
+        IL POSTO DOVE<br/><span class="hl-yellow">CI SI TROVA.</span>
+      </h2>
+      <p class="reveal mt-7 text-mute text-base sm:text-lg max-w-xl leading-relaxed" style="--rd:140ms;">
+        All'EUR mancava un pub che non fosse cocktail-bar plastificato.
+        Sam Beer e' nato per quello: birra, panino, due ore di chiacchiere.
+        Lavori qui? Studi qui? Vivi qui? Ci si vede al banco.
+      </p>
+    </div>
+
+    <!-- sticker wall -->
+    <div class="mb-12 flex flex-wrap gap-3 reveal" style="--rd:160ms;">
+      <span class="sticker bg-beer text-ink" style="--r:-3deg;">★ Birra fresca ogni giorno</span>
+      <span class="sticker bg-bone text-ink" style="--r:2deg;">No coperto</span>
+      <span class="sticker bg-beer text-ink" style="--r:-1.5deg;">Cucina fino a mezzanotte</span>
+      <span class="sticker bg-bone text-ink" style="--r:3deg;">Wi-Fi: PINTAFRESCA</span>
+      <span class="sticker bg-beer text-ink" style="--r:-2deg;">Cani benvenuti</span>
+      <span class="sticker bg-bone text-ink" style="--r:1.5deg;">Carta + bancomat</span>
+      <span class="sticker bg-beer text-ink" style="--r:-4deg;">Aperti tutti i giorni</span>
+      <span class="sticker bg-bone text-ink" style="--r:2.5deg;">Dehor in estate</span>
+    </div>
+
+    <!-- testimonial poster -->
+    <div class="grid md:grid-cols-3 gap-5 mb-16">
+      <div class="quote-card reveal p-6" style="--r:-1.5deg;">
+        <p class="chunk text-2xl leading-tight">"VENGO QUI DAL PRIMO GIORNO. È IL MIO SECONDO SALOTTO."</p>
+        <p class="hand text-xl mt-3">— Marco, 28 · cliente fisso del giovedì</p>
+      </div>
+      <div class="quote-card reveal p-6" style="--r:1.2deg; --rd:80ms;">
+        <p class="chunk text-2xl leading-tight">"BIRRA SERIA E NON SI PAGA MAI IL COPERTO. TROVAMENE UN ALTRO ALL'EUR."</p>
+        <p class="hand text-xl mt-3">— Giulia, 24 · ufficio qui vicino</p>
+      </div>
+      <div class="quote-card reveal p-6" style="--r:-2deg; --rd:160ms;">
+        <p class="chunk text-2xl leading-tight">"IL PECORA NERA È IL MIGLIOR HAMBURGER DELLA ZONA. PUNTO."</p>
+        <p class="hand text-xl mt-3">— Luca, 31 · fan dei panini</p>
+      </div>
+    </div>
+
+    <!-- quartiere fact strip -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 reveal">
+      <div class="cat-card p-5"><p class="chunk text-beer text-4xl">5'</p><p class="text-mute text-sm mt-1">a piedi dalla metro EUR Fermi</p></div>
+      <div class="cat-card p-5"><p class="chunk text-beer text-4xl">12+</p><p class="text-mute text-sm mt-1">birre alla spina ogni settimana</p></div>
+      <div class="cat-card p-5"><p class="chunk text-beer text-4xl">365</p><p class="text-mute text-sm mt-1">giorni l'anno aperti</p></div>
+      <div class="cat-card p-5"><p class="chunk text-beer text-4xl">01:00</p><p class="text-mute text-sm mt-1">la chiusura. l'ultima è sempre tua</p></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============= VISITACI ============= -->
+<section id="visitaci" class="relative py-24 sm:py-32 px-5 sm:px-8 lg:px-10 border-t border-line">
+  <div class="relative max-w-7xl mx-auto">
+    <div class="mb-14">
+      <p class="eyebrow mb-4 reveal">/04 — Visitaci</p>
+      <h2 class="reveal chunk text-bone text-5xl sm:text-7xl lg:text-8xl" style="--rd:60ms;">
+        PASSA<br/><span class="hl-yellow">A TROVARCI.</span>
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+
+      <!-- TODO: sostituire con embed Google Maps reale -->
+      <div id="map-placeholder" class="reveal md:col-span-2 relative aspect-[4/3] md:aspect-auto md:min-h-[420px] map-grid border border-line overflow-hidden">
+        <div class="absolute" style="left:56%; top:48%;">
+          <div class="map-pin-pulse w-4 h-4 rounded-full bg-beer relative z-10"></div>
+        </div>
+        <svg class="absolute inset-0 w-full h-full" viewBox="0 0 600 450" preserveAspectRatio="xMidYMid slice">
+          <line x1="0" y1="220" x2="600" y2="240" stroke="#2a2a28" stroke-width="22"/>
+          <line x1="0" y1="220" x2="600" y2="240" stroke="#FFD60A" stroke-width="1" stroke-dasharray="6 8" stroke-opacity=".35"/>
+          <line x1="280" y1="0" x2="320" y2="450" stroke="#2a2a28" stroke-width="14"/>
+        </svg>
+        <div class="absolute left-4 bottom-4 right-4 sm:right-auto bg-ink/90 border border-line p-4 max-w-sm">
+          <p class="eyebrow text-beer mb-2">Sam Beer Shop</p>
+          <p class="chunk text-bone text-xl sm:text-2xl leading-tight">VIALE DELL'AERONAUTICA 51</p>
+          <p class="text-mute text-sm mt-1">00144 Roma · Zona EUR sud</p>
+        </div>
+        <p class="absolute top-3 right-3 font-mono text-[10px] tracking-widest text-dim border border-line px-2 py-1 bg-ink/70">[MAPPA — STAGE 2]</p>
+      </div>
+
+      <div class="flex flex-col gap-6">
+        <div class="reveal border-2 border-line p-6 sm:p-7 bg-ink" style="--rd:80ms;">
+          <p class="eyebrow mb-4">Orari</p>
+          <div class="space-y-3">
+            <div class="flex justify-between items-baseline">
+              <span class="chunk text-2xl text-bone">LUN — VEN</span>
+              <span class="font-mono text-bone tabular-nums">12:00 – 01:00</span>
+            </div>
+            <div class="h-px bg-line"></div>
+            <div class="flex justify-between items-baseline">
+              <span class="chunk text-2xl text-bone">SAB — DOM</span>
+              <span class="font-mono text-bone tabular-nums">17:30 – 01:00</span>
+            </div>
+          </div>
+          <div class="mt-5 flex items-center gap-2 text-xs uppercase tracking-widest">
+            <span class="w-1.5 h-1.5 rounded-full bg-beer inline-block"></span>
+            <span class="text-mute">Aperto adesso</span>
+          </div>
+        </div>
+
+        <div class="reveal flex flex-col gap-3" style="--rd:160ms;">
+          <!-- TODO: sostituire link reale -->
+          <a href="#indicazioni" class="btn-beer inline-flex items-center justify-between px-5 py-4 text-sm uppercase">
+            Indicazioni
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <!-- TODO: sostituire link reale -->
+          <a href="#chiama" class="btn-ghost inline-flex items-center justify-between px-5 py-4 text-sm uppercase">
+            Chiama
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13 1.05.37 2.07.72 3.06a2 2 0 0 1-.45 2.11L8.09 10.21a16 16 0 0 0 6 6l1.32-1.33a2 2 0 0 1 2.11-.45c.99.35 2.01.59 3.06.72a2 2 0 0 1 1.72 2.06z"/></svg>
+          </a>
+          <!-- TODO: sostituire link reale -->
+          <a href="#prenota" class="btn-ghost inline-flex items-center justify-between px-5 py-4 text-sm uppercase">
+            Prenota online
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- recensioni -->
+    <div class="reveal mt-16 border-2 border-line p-7 sm:p-10 bg-ink flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <div class="max-w-xl">
+        <p class="eyebrow mb-3">Una cosa sola</p>
+        <p class="chunk text-bone text-3xl sm:text-4xl leading-tight">
+          TI E PIACIUTO?<br/>
+          <span class="hl-yellow">LASCIACI UNA RECENSIONE.</span>
+        </p>
+        <p class="mt-4 text-mute text-sm sm:text-base">Per noi vale piu di mille post.</p>
+      </div>
+      <!-- TODO: sostituire link reale -->
+      <a href="#review" class="btn-beer inline-flex items-center px-6 py-4 text-sm uppercase shrink-0">
+        Lascia una recensione
+        <svg class="ml-2" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============= INSTAGRAM ============= -->
+<section id="instagram" class="py-20 sm:py-24 px-5 sm:px-8 lg:px-10 border-t border-line bg-ink">
+  <div class="max-w-7xl mx-auto">
+    <div class="flex items-end justify-between flex-wrap gap-4 mb-10">
+      <div>
+        <p class="eyebrow mb-3 reveal">/05 — Social</p>
+        <h2 class="reveal chunk text-bone text-4xl sm:text-6xl" style="--rd:60ms;">@SAMBEERSHOP</h2>
+      </div>
+      <!-- TODO: sostituire link reale -->
+      <a href="#ig" class="ulink text-sm uppercase tracking-widest reveal" style="--rd:120ms;">Seguici su Instagram →</a>
+    </div>
+
+    <!-- TODO: feed reale @sambeershop -->
+    <div id="instagram-placeholder" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
+      <div class="reveal ig-tile"><img src="assets/interno-rame.jpg" alt="Bancone in rame" class="w-full h-full object-cover"/></div>
+      <div class="reveal ig-tile" style="--rd:60ms;"><img src="assets/birra.jpg" alt="Birra alla spina" class="w-full h-full object-cover"/></div>
+      <div class="reveal ig-tile" style="--rd:120ms;"><img src="assets/burger.jpg" alt="Burger" class="w-full h-full object-cover"/></div>
+      <div class="reveal ig-tile" style="--rd:180ms;"><img src="assets/interno-bancone.jpg" alt="Sam Beer di sera" class="w-full h-full object-cover"/></div>
+      <div class="reveal ig-tile" style="--rd:240ms;"><img src="assets/bicchiere-sam.jpg" alt="Bicchiere Sam" class="w-full h-full object-cover"/></div>
+      <div class="reveal ig-tile" style="--rd:300ms;"><img src="assets/panino-bn.jpg" alt="Cliente al locale" class="w-full h-full object-cover"/></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= FOOTER ============= -->
+<footer class="border-t border-line bg-ink py-14 sm:py-16 px-5 sm:px-8 lg:px-10">
+  <div class="max-w-7xl mx-auto flex flex-col items-center text-center gap-6">
+    <div class="flex flex-col items-center gap-3">
+      <img src="assets/logo.jpeg" alt="Sam Beer Shop" width="72" height="72" class="rounded-full object-cover ring-1 ring-line" style="width:72px;height:72px;"/>
+      <p class="chunk text-bone text-3xl tracking-wide">SAM<span class="text-beer">BEER</span> SHOP</p>
+    </div>
+
+    <div class="text-mute text-sm leading-relaxed max-w-md">
+      <p>Viale dell'Aeronautica 51, 00144 Roma</p>
+      <p class="mt-1">Lun–Ven 12:00–01:00 · Sab–Dom 17:30–01:00</p>
+    </div>
+
+    <div class="flex items-center gap-3 mt-2">
+      <!-- TODO: sostituire link reale -->
+      <a href="#ig" aria-label="Instagram" class="w-11 h-11 border border-line hover:border-beer hover:text-beer text-bone flex items-center justify-center transition">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+      </a>
+      <!-- TODO: sostituire link reale -->
+      <a href="#ta" aria-label="TripAdvisor" class="w-11 h-11 border border-line hover:border-beer hover:text-beer text-bone flex items-center justify-center transition">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="7.5" cy="13" r="3.5"/><circle cx="16.5" cy="13" r="3.5"/><path d="M3 10c2-3 7-4 9-4s7 1 9 4"/></svg>
+      </a>
+      <!-- TODO: sostituire link reale -->
+      <a href="#dish" aria-label="dish.co" class="w-11 h-11 border border-line hover:border-beer hover:text-beer text-bone flex items-center justify-center transition">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="16" y1="2" x2="16" y2="6"/></svg>
+      </a>
+    </div>
+
+    <div class="mt-6 pt-6 border-t border-line w-full flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-dim">
+      <span class="font-mono uppercase tracking-widest">Sito demo in costruzione</span>
+      <span class="font-mono">© 2026 · Sam Beer Shop</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // sticky nav
+  const nav = document.getElementById('topnav');
+  const onScroll = () => {
+    if (window.scrollY > 24) nav.classList.add('nav-scrolled');
+    else nav.classList.remove('nav-scrolled');
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // mobile menu
+  const burger = document.getElementById('hamburger');
+  const mm = document.getElementById('mobileMenu');
+  function setMM(open) {
+    mm.classList.toggle('open', open);
+    burger.classList.toggle('is-open', open);
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    burger.setAttribute('aria-label', open ? 'Chiudi menu' : 'Apri menu');
+    mm.setAttribute('aria-hidden', open ? 'false' : 'true');
+    document.body.classList.toggle('mm-open', open);
+  }
+  burger.addEventListener('click', () => setMM(!mm.classList.contains('open')));
+  mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMM(false)));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') setMM(false); });
+
+  // reveal stepped on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* ============ SCROLL SCENE: bicchiere che si riempie (continuous, sketchy) ============
+     Un solo copy fisso. La birra sale in modo fluido col progresso di scroll.
+     Stile "Lambrate": bicchiere disegnato, riempimento progressivo, schiuma a fine corsa. */
+  const scene       = document.getElementById('scrollscene');
+  const liquid      = document.getElementById('liquid');
+  const liquidShine = document.getElementById('liquidShine');
+  const foam        = document.getElementById('foam');
+  const bubbles     = document.getElementById('bubbles');
+  const carbStream  = document.getElementById('carbStream');
+  const drop        = document.getElementById('drop');
+  const splash      = document.getElementById('splash');
+  const hatchG      = document.getElementById('liquidHatch');
+  const hatch1      = document.getElementById('hatch1');
+  const hatch2      = document.getElementById('hatch2');
+  const fillBar     = document.getElementById('fillBar');
+  const fillPct     = document.getElementById('fillPct');
+
+  // capacity in svg units — new pint geometry: base ~354, top ~60
+  const BASE_Y = 354;
+  const MAX_H  = 290; // fills almost to the rim; foam sits on top
+  const FOAM_START = 0.45;
+
+  function clamp(v, a, b){ return Math.max(a, Math.min(b, v)); }
+
+  function onSceneScroll() {
+    const rect = scene.getBoundingClientRect();
+    const vh = window.innerHeight || 800;
+    // Progress maps section travel through the viewport.
+    const sectionTop = rect.top;
+    const sectionH   = rect.height;
+    const total  = vh + sectionH;
+    const passed = vh - sectionTop;
+    let t = total > 0 ? passed / total : 0;
+    t = clamp((t - 0.18) / 0.35, 0, 1);
+
+    // ease in-out
+    const ease = t < 0.5 ? 2*t*t : 1 - Math.pow(-2*t + 2, 2) / 2;
+    const h = ease * MAX_H;
+
+    liquid.setAttribute('y', BASE_Y - h);
+    liquid.setAttribute('height', h);
+    if (liquidShine) {
+      liquidShine.setAttribute('y', BASE_Y - h);
+      liquidShine.setAttribute('height', h);
+    }
+
+    // bubbles
+    const bubOp = clamp((t - 0.08) * 1.6, 0, 1) * (1 - Math.max(0, (t - 0.92) * 6));
+    bubbles.setAttribute('opacity', bubOp.toFixed(2));
+
+    // carbonation column rising from base
+    if (carbStream) {
+      const carbOp = clamp((t - 0.15) * 1.5, 0, 0.85) * (1 - Math.max(0, (t - 0.95) * 8));
+      carbStream.setAttribute('opacity', carbOp.toFixed(2));
+      carbStream.setAttribute('transform', `translate(0 ${-(t * 40) % 30})`);
+    }
+
+    // droplet pulses early in pour
+    const dropOp = t > 0.02 && t < 0.65 ? Math.abs(Math.sin(t * 16)) * 0.9 : 0;
+    drop.setAttribute('opacity', dropOp.toFixed(2));
+    drop.setAttribute('transform', `translate(0 ${(t * 32) % 28})`);
+
+    // meniscus / surface line follows liquid top
+    if (t > 0.04) {
+      hatchG.setAttribute('opacity', '0.85');
+      const surfaceY = BASE_Y - h + 2;
+      hatch1.setAttribute('y1', surfaceY);
+      hatch1.setAttribute('y2', surfaceY);
+      if (hatch2) {
+        hatch2.setAttribute('y1', surfaceY - 1.5);
+        hatch2.setAttribute('y2', surfaceY - 1.5);
+      }
+    } else {
+      hatchG.setAttribute('opacity', '0');
+    }
+
+    // splash marks
+    splash.setAttribute('opacity', clamp((t - 0.18) * 2, 0, 0.8).toFixed(2));
+
+    // foam at end
+    const foamOp = clamp((t - FOAM_START) / (1 - FOAM_START), 0, 1);
+    foam.setAttribute('opacity', foamOp.toFixed(2));
+    foam.setAttribute('transform', `translate(0 ${(1 - foamOp) * 16})`);
+
+    // progress bar copy
+    const pct = Math.round(t * 100);
+    fillBar.style.width = pct + '%';
+    fillPct.textContent = pct;
+  }
+  window.addEventListener('scroll', onSceneScroll, { passive: true });
+  window.addEventListener('resize', onSceneScroll);
+  onSceneScroll();
+</script>
+</body>
+</html>
